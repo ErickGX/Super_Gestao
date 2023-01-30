@@ -21,10 +21,18 @@ Route::get('/', function () {
     return 'Olá, Seja bem vindo ErickGX'; 
 }); */
 
-Route::get ('/', [PrincipalController::class, 'principal']);
+Route::get ('/', [PrincipalController::class, 'principal'])->name('principal');
 
-Route::get ('/sobre-nos', [SobreNosController::class, 'sobreNos']);
+Route::get ('/sobre-nos', [SobreNosController::class, 'sobreNos'])->name('sobreNos');
 
-Route::get ('/contato', [ContatoController::class, 'contato']);
+Route::get ('/contato', [ContatoController::class, 'contato'])->name('contato');
+
+
+
+Route::get('/contato/{nome}/{categoria}/{assunto}/{mensagem}', function (string $nome, string $categoria, string $assunto, string $mensagem) {
+    echo "Estamos Aqui: $nome - $categoria - $assunto - $mensagem"; 
+});
+
+
 
 
