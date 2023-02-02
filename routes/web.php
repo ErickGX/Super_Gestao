@@ -22,10 +22,18 @@ Route::get('/', function () {
 }); */
 
 Route::get ('/', [PrincipalController::class, 'principal'])->name('principal');
-
 Route::get ('/sobre-nos', [SobreNosController::class, 'sobreNos'])->name('sobreNos');
-
 Route::get ('/contato', [ContatoController::class, 'contato'])->name('contato');
+Route::get ('/login', function(){ return 'Login' ; });
+
+Route::prefix('/app')->group(function(){
+
+  Route::get ('/clientes', function(){ return 'Clientes' ; });
+  Route::get ('/fornecedores', function(){ return 'Fornecedores' ; });
+  Route::get ('/produtos', function(){ return 'Produtos' ; });
+});
+
+
 
 
 /* Route::get('/contato/{nome}/{categoria_id}', // Rotas com parametros usando expressoes regulares
