@@ -42,6 +42,10 @@ Route::prefix('/app')->group(function(){
    return redirect()->route('site.rota1') ;
  })->name('site.rota2');
 
+Route::fallback(function(){
+   echo 'A rota acessa não existe. <a href="'.route('site.index').'">clique aqui</a> para ir para a pagina inicial';
+});
+
 //Route::redirect('/rota2', '/rota1'); // metodo de redirecionamento diretamente no objeto rota
 
 
