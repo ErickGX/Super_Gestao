@@ -1,12 +1,18 @@
-/* verbos http - manipulação de requisições -- ROUTES/ROTAS
+verbos http - manipulação de requisições -- ROUTES/ROTAS
 
  composição comando  
 
  Route::get ($uri, $callback)
 
 get/post/put/patch/delete/option */
-
+----------------
 
 No laravel 9x a chamada do controller da Routes é feita da seguinte forma :
              uri   -    Classe do controler  - Metodo/Action    
  Route::get('/', [PrincipalController::class, 'principal']);
+----------------------
+  metodo name para nomear rotas, nomeacao apenas dentro da logica do programa ->name('nomedarota')
+  retira a dependencia direta do link caso sofra alteração
+
+//Redirecionamento de rotas , comumente usando nos controllers, pode ser usado direto no metodo Route tambem
+Route::redirect('rotaqueestou','rotaquequeroIR');  

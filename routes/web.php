@@ -21,19 +21,28 @@ Route::get('/', function () {
     return 'Olá, Seja bem vindo ErickGX'; 
 }); */
 
-Route::get ('/', [PrincipalController::class, 'principal'])->name('principal');
-Route::get ('/sobre-nos', [SobreNosController::class, 'sobreNos'])->name('sobreNos');
-Route::get ('/contato', [ContatoController::class, 'contato'])->name('contato');
-Route::get ('/login', function(){ return 'Login' ; });
+Route::get ('/', [PrincipalController::class, 'principal'])->name('site.index'); 
+Route::get ('/sobre-nos', [SobreNosController::class, 'sobreNos'])->name('site.sobrenos'); 
+Route::get ('/contato', [ContatoController::class, 'contato'])->name('site.contato');
+Route::get ('/login', function(){ return 'Login' ; })->name('site.login');
 
 Route::prefix('/app')->group(function(){
+  
+  Route::get ('/clientes', function(){ return 'Clientes' ; })->name('app.clientes');
+  Route::get ('/fornecedores', function(){ return 'Fornecedores' ; })->name('app.fornecedores');
+  Route::get ('/produtos', function(){ return 'Produtos' ; })->name('app.produtos');
 
-  Route::get ('/clientes', function(){ return 'Clientes' ; });
-  Route::get ('/fornecedores', function(){ return 'Fornecedores' ; });
-  Route::get ('/produtos', function(){ return 'Produtos' ; });
 });
 
+ Route::get('/rota1', function() {
+     echo 'Rota 1';
+ })->name('site.rota1');
 
+ Route::get('/rota2', function() {
+   return redirect()->route('site.rota1') ;
+ })->name('site.rota2');
+
+//Route::redirect('/rota2', '/rota1'); // metodo de redirecionamento diretamente no objeto rota
 
 
 /* Route::get('/contato/{nome}/{categoria_id}', // Rotas com parametros usando expressoes regulares
