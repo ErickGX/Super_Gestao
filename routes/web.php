@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\SobreNosController;
+use App\Http\Controllers\TesteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,13 +35,7 @@ Route::prefix('/app')->group(function(){
 
 });
 
- Route::get('/rota1', function() {
-     echo 'Rota 1';
- })->name('site.rota1');
-
- Route::get('/rota2', function() {
-   return redirect()->route('site.rota1') ;
- })->name('site.rota2');
+ Route::get('/teste/{p1}/{p2}',[TesteController::class, 'teste'])->name('teste');
 
 Route::fallback(function(){
    echo 'A rota acessa não existe. <a href="'.route('site.index').'">clique aqui</a> para ir para a pagina inicial';
