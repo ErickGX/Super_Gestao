@@ -15,4 +15,32 @@ No laravel 9x a chamada do controller da Routes é feita da seguinte forma :
   retira a dependencia direta do link caso sofra alteração
 
 //Redirecionamento de rotas , comumente usando nos controllers, pode ser usado direto no metodo Route tambem
-Route::redirect('rotaqueestou','rotaquequeroIR');  
+Route::redirect('rotaqueestou','rotaquequeroIR'); 
+
+
+
+---------------------Blade----------------------------
+ Motor de renderização de views nativo do laravel
+Otimização da visualização da aplicação, Sintaxe enxuta e clara para criação de paginas dinamicas
+!!! Poderoso recurso de herança de templates, possibilita que views extendam/incluam/modifiquem outras views, 
+permite o uso da sintaxe do blade e do php puro ao mesmo tempo
+---------------------------------------------
+
+
+{{-- Fica o comentário que será descartado pelo interpretador do blade --}}  Comentarios Blade
+
+
+{if( <condição> )  {}  //executa quando o retorno for true 
+@unless()  executa se o retorno for false  igual ao operador ! de negação }
+
+----@isset ==  if (isset($variavel)){} <- verifica se uma variavel existe
+
+--@empty  == is Null //  Verifica se a variavel esta vazia/nao atribuida/sem valor // 
+exemplos: - '' / 0 / 0.0 / '0'/ null / false /array[] / $variavel = ;
+
+-- Operador ternario ? :  -- if de uma linha , usando booleano e assim tomando ação logica apos isso
+Exemplo:    echo  isset($fornecedores[1]['cnpj']) ? 'CNPJ informado' : 'CNPJ não informado';
+
+--Operador ternario com valor default ?? 
+
+se a variavel testada 
