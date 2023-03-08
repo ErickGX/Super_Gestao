@@ -31,8 +31,24 @@ permite o uso da sintaxe do blade e do php puro ao mesmo tempo
 
 
 {if( <condição> )  {}  //executa quando o retorno for true 
-@unless()  executa se o retorno for false  igual ao operador ! de negação }
 
+Exemplo : 
+
+[[@if(count($fornecedores)> 0 && count($fornecedores) <10 )
+    <h3>Existem alguns fornecedores cadastrados</h3>     
+@elseif(count($fornecedores) > 10  )
+    <h3>Existem  varios fornecedores cadastrados</h3>
+@else
+    <h3>Ainda nao existem fornecedores cadastrados</h3>
+@endif ]]
+
+---@unless()  executa se o retorno for false  igual ao operador ! de negação }
+[[
+
+  @unless ($fornecedores[0]['status'] == 'S')
+    Fornecedor Inativo   
+@endunless  
+]]
 ----@isset ==  if (isset($variavel)){} <- verifica se uma variavel existe
 
 --@empty  == is Null //  Verifica se a variavel esta vazia/nao atribuida/sem valor // 
@@ -41,6 +57,47 @@ exemplos: - '' / 0 / 0.0 / '0'/ null / false /array[] / $variavel = ;
 -- Operador ternario ? :  -- if de uma linha , usando booleano e assim tomando ação logica apos isso
 Exemplo:    echo  isset($fornecedores[1]['cnpj']) ? 'CNPJ informado' : 'CNPJ não informado';
 
---Operador ternario com valor default ?? 
+--Operador ternario com valor default ?? se a variavel possuir valor null
 
 se a variavel testada 
+
+-- @while @for @foreach @switch @forelse <-- nao possui equivalente no php // caso array vazio retorna erro definido no @empty
+
+ 
+Exemplos : 
+
+  //Percorre o indice do array e retorna falso isset,  quando atingir o final do indice
+ [[@for ($i = 0; @isset($fornecedores[$i]) ; $i++) 
+  //Codigo
+   @endfor
+
+  @for ($i = 1; $i <= 10; $i++)
+      {{ $i }} 
+  @endfor  ]]
+
+
+[[
+    @php $i = 0  @endphp
+            @while (isset($fornecedores[$i]))
+
+       @php $i++  @endphp
+            @endwhile    
+]]
+
+[[
+
+ @switch($fornecedores[2]['ddd'])
+            @case(11)
+                São Paulo - SP
+                @break
+            @case(21)
+                Rio de Janeiro - RJ
+                @break
+            @case(85)
+                Fortaleza - Ceara
+                @break
+            @default
+                Estado não identificado
+        @endswitch 
+
+]]
